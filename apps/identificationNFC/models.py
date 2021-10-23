@@ -23,7 +23,10 @@ class activeModel(models.Model):
         verbose_name_plural = 'Estado Autenticaciones NFC'
 
     def __str__(self):
-        return f'{self.active}'
+        if self.active:
+            return f'{"Activo"} {self.description}'
+        else:
+            return f'{"Inactivo"} {self.description}'
 
 class identification(models.Model):
     id = models.AutoField(primary_key = True)
