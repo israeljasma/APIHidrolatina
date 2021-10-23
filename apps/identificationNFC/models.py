@@ -27,6 +27,8 @@ class activeModel(models.Model):
             return f'{"Activo"} {self.description}'
         else:
             return f'{"Inactivo"} {self.description}'
+    # def __str__(self):
+    #     return f'{self.active} {self.description}'
 
 class identification(models.Model):
     id = models.AutoField(primary_key = True)

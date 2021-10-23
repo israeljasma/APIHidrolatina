@@ -13,3 +13,6 @@ class IdentificationSerializerListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return identification.objects.all()
+
+class IdentificationCreateAPIView(generics.CreateAPIView):
+    serializer_class = IdentificationSerializer
