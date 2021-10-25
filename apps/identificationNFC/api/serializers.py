@@ -16,7 +16,7 @@ class IdentificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = identification
         fields = '__all__'
-
+    
     # def to_representation(self, instance):
     #     return {
     #         'id': instance.id,
@@ -25,3 +25,8 @@ class IdentificationSerializer(serializers.ModelSerializer):
     #         # 'created_date' : instance.created_date,
     #         # 'modified_date' : instance.modified_date
     #     }
+
+class IdentificationUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = identification
+        fields = '__all__'
