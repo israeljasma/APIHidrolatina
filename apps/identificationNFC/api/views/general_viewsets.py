@@ -1,4 +1,5 @@
 from rest_framework import generics, viewsets
+from apps.identificationNFC.models import activeModel, identification
 from apps.identificationNFC.api.serializers import ActiveModelSerializer, IdentificationSerializer, IdentificationUpdateSerializer
 
 class IdentificationViewSet(viewsets.ModelViewSet):
@@ -8,8 +9,14 @@ class IdentificationViewSet(viewsets.ModelViewSet):
             return serializer_class
         else:
             serializer_class = IdentificationSerializer
+            
             return  serializer_class
+            
+    def get_queryset(self):
+        return self.get_serializer().Meta.model.objects.all()
+    
+    
 
-
-class ActiveViewSet(generics.ListAPIView):
+class ActiveViewSet(viewsets.ModelViewSet):
     serializer_class = ActiveModelSerializer
+    queryset = serializer_class.Meta.model.objects.all()

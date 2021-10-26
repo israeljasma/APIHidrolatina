@@ -5,7 +5,7 @@ from apps.identificationNFC.api.views.general_viewsets import IdentificationView
 
 router = DefaultRouter()
 
-router.register(r'nfc', IdentificationViewSet)
-router.register(r'active', ActiveViewSet)
+router.register(r'nfc', IdentificationViewSet, basename= 'nfcs')
+router.register(r'active', ActiveViewSet, basename= 'actives')
 
 urlpatterns = router.urls
