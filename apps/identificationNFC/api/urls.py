@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.identificationNFC.api.views.general_views import ActiveModelListAPIView, IdentificationCreateListAPIView, IdentificationRetrieveUpdateDestroyAPIView
+from apps.identificationNFC.api.views.general_viewsets import ActiveModelListAPIView, IdentificationCreateListAPIView, IdentificationRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('state/', ActiveModelListAPIView.as_view(), name= 'Estado NFC'),
