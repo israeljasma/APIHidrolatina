@@ -35,6 +35,7 @@ LOCAL_APPS = [
 THIRD_APPS = [
     'rest_framework',
     'simple_history',
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -49,6 +50,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
 ]
+
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': 'none'
+}
 
 ROOT_URLCONF = 'apihidrolatina.urls'
 
