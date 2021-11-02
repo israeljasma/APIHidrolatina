@@ -56,6 +56,8 @@ SWAGGER_SETTINGS = {
     'DOC_EXPANSION': 'none'
 }
 
+TOKEN_EXPIRED_AFTER_SECONDS = 36000
+
 ROOT_URLCONF = 'apihidrolatina.urls'
 
 TEMPLATES = [

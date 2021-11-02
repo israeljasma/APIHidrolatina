@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 from django.contrib.sessions.models import Session
 
@@ -9,6 +10,15 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
 from apps.users.api.serializers import UserTokenSerializer
+
+class UserToken(APIView):
+    def get(self, request, *args, **kwargs):
+        username = request.GET.get('username')
+        try:
+            user_token = Token.objects.get(user = UserTokenSerializer().Meta.model.objects.filter(username = username).first())
+            return Response({'token': user_token.key})
+        except:
+            return Response({'error': 'Credenciales enviadas incorrectas.'}, status = status.HTTP_400_BAD_REQUEST)
 
 class Login(ObtainAuthToken):
 
@@ -65,7 +75,7 @@ class Logout(APIView):
                 token.delete()
 
                 session_message = 'Sesiones de usuario eliminadas.'
-                token_message = 'Toke eliminado.'
+                token_message = 'Token eliminado.'
 
                 return Response({'token_message': token_message, 'session_message': session_message}, status = status.HTTP_200_OK)
 
