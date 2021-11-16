@@ -1,5 +1,4 @@
 from datetime import datetime
-import re
 
 from django.contrib.sessions.models import Session
 
@@ -10,6 +9,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
 from apps.users.api.serializers import UserTokenSerializer
+from apps.users.models import User
+
 
 class UserToken(APIView):
     def get(self, request, *args, **kwargs):
@@ -51,6 +52,34 @@ class Login(ObtainAuthToken):
             return Response({'error': 'Nombre de usuario o contraseña incorrectos.'}, status = status.HTTP_400_BAD_REQUEST)
         return Response({'mensaje':'Holas desde response'}, status = status.HTTP_200_OK)
 
+class LoginNFC(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        nfc = request.POST.get('nfc')
+        if nfc is not None:
+            userId = User.objects.filter(nfc__NFC=nfc).values_list('id', flat=True).first()
+            if userId is not None:
+                userInstance = User.objects.get(id=userId)
+                token, created = Token.objects.get_or_create(user = userInstance)
+                user_serializer = UserTokenSerializer(userInstance)
+                if created:
+                    return Response({
+                        'token': token.key,
+                        'user': user_serializer.data,
+                        'message': 'Inicio de Sesión Exitoso.'
+                        }, status.HTTP_201_CREATED)
+                else:
+                    token.delete()
+                    token = Token.objects.create(user = userInstance)
+                    return Response({
+                        'token': token.key,
+                        'user': user_serializer.data,
+                        'message': 'Inicio de Sesión Exitoso.'
+                        }, status.HTTP_201_CREATED)
+            else:
+                return Response({'error': 'Dispositivo NFC incorrecto.'}, status = status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'error': 'No se detecto dispositivo NFC.'}, status = status.HTTP_400_BAD_REQUEST)
 
 class Logout(APIView):
 
