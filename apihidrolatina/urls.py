@@ -47,4 +47,5 @@ urlpatterns = [
     path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
     path('user/', include('apps.users.api.urls')),
     path('identification/', include('apps.identificationNFC.api.routers')),
+    path('ppe/', include('apps.PPE.api.routers')),
 ]
