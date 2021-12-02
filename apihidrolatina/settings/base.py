@@ -30,6 +30,7 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.PPE',
+    'apps.actions',
     'apps.identificationNFC',
 ]
 
