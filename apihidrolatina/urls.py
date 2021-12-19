@@ -49,4 +49,5 @@ urlpatterns = [
     path('identification/', include('apps.identificationNFC.api.routers')),
     path('ppe/', include('apps.PPE.api.routers')),
     path('actiondetection/', include('apps.actions.api.routers')),
+    path('sensors/', include('apps.sensors.api.routers')),
 ]

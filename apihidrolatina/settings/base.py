@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-kho6+_eks7*m%2oommkunk0m*yamiumh$*3!*zvw5qu_z4-5$q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -32,6 +32,7 @@ LOCAL_APPS = [
     'apps.PPE',
     'apps.actions',
     'apps.identificationNFC',
+    'apps.sensors',
 ]
 
 THIRD_APPS = [
@@ -119,6 +120,7 @@ AUTH_USER_MODEL = 'users.User'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:9000",
+    "http://localhost:4200",
 ]
 
 # Por si no funciona la conexion con el Frontend
