@@ -8,16 +8,19 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
+from apps.users.authentication_mixins import Authenication
 from apps.users.api.serializers import UserTokenSerializer
 from apps.users.models import User
 
 
-class UserToken(APIView):
+class UserToken(Authenication, APIView):
+    # Validate Token
     def get(self, request, *args, **kwargs):
-        username = request.GET.get('username')
         try:
-            user_token = Token.objects.get(user = UserTokenSerializer().Meta.model.objects.filter(username = username).first())
-            return Response({'token': user_token.key})
+            user_token, _ = Token.objects.get_or_create(user = self.user)
+            
+            user = UserTokenSerializer(self.user)
+            return Response({'token': user_token.key, 'user': user.data})
         except:
             return Response({'error': 'Credenciales enviadas incorrectas.'}, status = status.HTTP_400_BAD_REQUEST)
 
