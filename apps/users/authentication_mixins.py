@@ -1,13 +1,10 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
+from rest_framework import authentication, exceptions
 from rest_framework.authentication import get_authorization_header
 
 from apps.users.authentication import ExpiringTokenAuthentication
 
-class Authenication(object):
+class Authenication(authentication.BaseAuthentication):
     user = None
-
     def get_user(self, request):
         token = get_authorization_header(request).split()
         if token:
@@ -25,15 +22,9 @@ class Authenication(object):
 
         return None
 
+    def authenticate(self, request):
+        self.get_user(request)
+        if self.user is None:
+            raise exceptions.AuthenticationFailed('No se han enviado las credenciales.')
 
-    def dispatch(self, request, *args, **kwargs):
-        user = self.get_user(request)
-        # Token encontrado en request
-        if user is not None:
-            return super().dispatch(request, *args, **kwargs)
-
-        response = Response({'error': 'No se han enviado las credenciales.'}, status = status.HTTP_400_BAD_REQUEST)
-        response.accepted_renderer = JSONRenderer()
-        response.accepted_media_type = 'application/json'
-        response.renderer_context = {}
-        return response
+        return (self.user, None)

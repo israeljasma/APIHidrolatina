@@ -1,9 +1,8 @@
-from rest_framework import generics, viewsets
-from apps.identificationNFC.models import activeModel, identification
-from apps.users.authentication_mixins import Authenication
+from rest_framework import viewsets
+
 from apps.identificationNFC.api.serializers import ActiveModelSerializer, IdentificationSerializer, IdentificationUpdateSerializer
 
-class IdentificationViewSet(Authenication, viewsets.ModelViewSet):
+class IdentificationViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action=='update':
             serializer_class = IdentificationUpdateSerializer

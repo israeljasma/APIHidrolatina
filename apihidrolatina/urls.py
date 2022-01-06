@@ -21,6 +21,11 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 from apps.users.views import Login, Logout, UserToken, LoginNFC
 
 schema_view = get_schema_view(
@@ -44,7 +49,9 @@ urlpatterns = [
     path('login/', Login.as_view(), name = 'Login'),
     path('nfclogin/', LoginNFC.as_view(), name = 'Login_NFC'),
     path('logout/', Logout.as_view(), name = 'Logout'),
-    path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
     path('user/', include('apps.users.api.urls')),
     path('identification/', include('apps.identificationNFC.api.routers')),
     path('ppe/', include('apps.PPE.api.routers')),
