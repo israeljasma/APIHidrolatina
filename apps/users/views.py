@@ -47,6 +47,28 @@ class Logout(GenericAPIView):
             return Response({'message': 'Sesión cerrada correctamente.'}, status=status.HTTP_200_OK)
         return Response({'error': 'No existe este usuario'}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class LoginNFC(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        # nfc = request.POST.get('nfc')
+        nfc = request.data.get('nfc')
+        if nfc is not None:
+            userId = User.objects.filter(nfc__NFC=nfc).values_list('id', flat=True).first()
+            print(userId)
+            if userId is not None:
+                userInstance = User.objects.get(id=userId)
+                user_serializer = CustomUserSerializer(userInstance)
+                return Response({
+                    'token': str(RefreshToken.for_user(userInstance).access_token),
+                    'refresh-token': str(RefreshToken.for_user(userInstance)),
+                    'user': user_serializer.data,
+                    'message': 'Inicio de Sesion Exitoso'
+                }, status=status.HTTP_200_OK)
+            else:
+                return Response({'error': 'Dispositivo NFC incorrecto.'}, status = status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'error': 'No se detecto dispositivo NFC.'}, status = status.HTTP_400_BAD_REQUEST)
+
 # class Login(ObtainAuthToken):
 
 #     def post(self, request, *args, **kwargs):
