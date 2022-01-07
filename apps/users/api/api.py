@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from apps.users.models import User
-from apps.users.api.serializers import UserSerializer, UserListSerializer
+from apps.users.api.serializers import CustomUserSerializer, UserListSerializer
 
 @api_view(['GET', 'POST'])
 def user_api_view(request):
@@ -18,7 +18,7 @@ def user_api_view(request):
 
     # create
     elif request.method == 'POST':
-        users_serializer = UserSerializer(data = request.data)
+        users_serializer = CustomUserSerializer(data = request.data)
 
         # validation
         if users_serializer.is_valid():
@@ -37,12 +37,12 @@ def user_detail_api_view(request, pk = None):
 
         # retrieve
         if request.method == 'GET':
-            user_serializer = UserSerializer(user)
+            user_serializer = CustomUserSerializer(user)
             return Response(user_serializer.data, status = status.HTTP_200_OK)
         
         # update
         elif request.method == 'PUT':
-            user_serializer = UserSerializer(user, data = request.data)
+            user_serializer = CustomUserSerializer(user, data = request.data)
             if user_serializer.is_valid():
                 user_serializer.save()
                 return Response({'message':'Usuario modificado Correctamente!'}, status = status.HTTP_200_OK)
