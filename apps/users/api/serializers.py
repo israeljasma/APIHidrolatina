@@ -29,13 +29,21 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-    def update(self, instance, validated_data):
-        update_user = super().update(instance, validated_data)
-        update_user.set_password(validated_data['password'])
-        update_user.save()
-        return update_user
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        #Modelo
+        model = User
+        #campos a usar
+        fields = ('username', 'email', 'name', 'last_name')
+
+    # def update(self, instance, validated_data):
+    #     update_user = super().update(instance, validated_data)
+    #     update_user.set_password(validated_data['password'])
+    #     update_user.save()
+    #     return update_user
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        exclude = ('password','groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser')
+        # fields = '__all__'

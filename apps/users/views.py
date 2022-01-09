@@ -38,6 +38,7 @@ class Login(TokenObtainPairView):
         return Response({'error': 'Contraseña o nombre de usuario incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
 
 class Logout(GenericAPIView):
+    serializer_class = CustomUserSerializer
     def post(self, request, *args, **kwargs):
         user = User.objects.filter(id=request.user.id)
         if user.exists():
