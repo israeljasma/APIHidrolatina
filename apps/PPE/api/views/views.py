@@ -10,8 +10,7 @@ class detectionPPEViewSet(viewsets.ModelViewSet):
     queryset = serializer_class.Meta.model.objects.all()
 
     def perform_create(self, serializer):
-        print(self.request.data)
-        user_id = Token.objects.get(key=self.request.data['token']).user_id
+        user_id = self.request.user.id
         userInstance = User.objects.get(id=user_id)
         serializer.save(user=userInstance)
 
