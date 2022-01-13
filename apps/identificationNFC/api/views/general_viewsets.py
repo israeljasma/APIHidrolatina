@@ -11,7 +11,6 @@ class IdentificationViewSet(viewsets.ModelViewSet):
             return serializer_class
         else:
             serializer_class = IdentificationSerializer
-            
             return serializer_class
             
     def get_queryset(self):
