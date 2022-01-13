@@ -15,7 +15,7 @@ class IdentificationSerializer(serializers.ModelSerializer):
     # active = ActiveModelSerializer()
     class Meta:
         model = identification
-        fields = '__all__'
+        exclude = ('state',)
 
     # def to_representation(self, instance):
     #     return {
