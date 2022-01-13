@@ -20,7 +20,6 @@ class IdentificationViewSet(viewsets.ModelViewSet):
     def destroy(self, request, pk = None):
         if IdentificationSerializer.Meta.model.objects.filter(pk=pk):
             nfc = IdentificationSerializer.Meta.model.objects.filter(pk=pk).update(state=False)
-            nfc.save()
             return Response({'message': 'NFC eliminado correctamente.'},status=status.HTTP_200_OK)
         return Response({'message': 'NFC no encontrado'},status=status.HTTP_404_NOT_FOUND)
 
