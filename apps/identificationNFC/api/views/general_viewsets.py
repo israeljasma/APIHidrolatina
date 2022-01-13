@@ -12,10 +12,10 @@ class IdentificationViewSet(viewsets.ModelViewSet):
         else:
             serializer_class = IdentificationSerializer
             
-            return  serializer_class
+            return serializer_class
             
     def get_queryset(self):
-        return self.get_serializer().Meta.model.objects.all()
+        return self.get_serializer().Meta.model.objects.filter(state=True)
 
     def destroy(self, request, pk = None):
         if IdentificationSerializer.Meta.model.objects.filter(pk=pk):
