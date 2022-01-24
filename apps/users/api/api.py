@@ -43,7 +43,7 @@ class UserViewSet(viewsets.GenericViewSet):
         if user_serializer.is_valid():
             user_serializer.save()
             return Response({'message':'Usuario actualizado correctamente.'}, status = status.HTTP_201_CREATED)
-        return Response({'message':'Hay errores en la actualización.', 'erros':user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+        return Response({'message':'Hay errores en la actualización.', 'errors':user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         user_destroy = self.model.objects.filter(id=pk).update(is_active=False)
