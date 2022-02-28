@@ -20,7 +20,7 @@ class IdentificationViewSet(viewsets.ModelViewSet):
         nfc_serializer = IdentificationSerializer(data=request.data)
         if nfc_serializer.is_valid():
             nfc_serializer.save()
-            return Response({'message': 'NFC Yeey', 'data': nfc_serializer.data},status=status.HTTP_200_OK)
+            return Response({'message': 'NFC registrado Correctamente.', 'data': nfc_serializer.data},status=status.HTTP_200_OK)
         return Response({'message': 'Hay errores en el registro.', 'errors': nfc_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk = None):
