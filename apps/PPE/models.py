@@ -14,9 +14,9 @@ class detectionPPE(models.Model):
     gloves = models.BooleanField('Guantes')
     boots = models.BooleanField('Botas')
     state = models.BooleanField('estado', default=True)
-    hour = models.TimeField('Hora', auto_now = False, auto_now_add = True, null = True)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    date = models.DateTimeField('Fecha', auto_now = False, auto_now_add = True, null = True)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name = 'Usuario detectado', blank = True)
     historical = HistoricalRecords()
 
