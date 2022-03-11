@@ -9,8 +9,8 @@ class risk(models.Model):
     id = models.AutoField(primary_key = True)
     risk = models.CharField('Riesgo', max_length = 255, blank = True, null = True)
     state = models.BooleanField('Estado', default=True)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
     historical = HistoricalRecords()
 
     @property
@@ -32,8 +32,8 @@ class action(models.Model):
     id = models.AutoField(primary_key = True)
     action = models.CharField('Acción', max_length = 255, blank = True, null = True)
     state = models.BooleanField('Estado', default=True)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
     historical = HistoricalRecords()
 
     @property
@@ -58,9 +58,9 @@ class actionDetection(models.Model):
     risk = models.ForeignKey(risk, on_delete=models.CASCADE, verbose_name = 'Riesgo')
     hour = models.TimeField('Hora', auto_now = False, auto_now_add = True)
     state = models.BooleanField('estado', default=True)
-    date = models.DateField('Fecha', auto_now = False, auto_now_add = True)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    date = models.DateTimeField('Fecha', auto_now = False, auto_now_add = True)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name = 'Usuario operador')
     historical = HistoricalRecords()
 

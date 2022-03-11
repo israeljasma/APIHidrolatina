@@ -6,8 +6,8 @@ class RejectFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Caudal de rechazo'
@@ -19,8 +19,8 @@ class PermeateFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Caudal de permeado'
@@ -32,8 +32,8 @@ class PermeateConductivity(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Conductividad de permeado'
@@ -45,8 +45,8 @@ class RejectionPressure(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Presión de rechazo'
@@ -58,8 +58,8 @@ class FeedConductivity(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Conductividad de alimentación'
@@ -71,8 +71,8 @@ class DeedingTemperature(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Temperatura de alimentación'
@@ -84,8 +84,8 @@ class FeedPressure(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField()
     unit = models.CharField(max_length=255)
-    created_date = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    modified_date = models.DateField('Fecha de Modificación', auto_now = True, auto_now_add = False)
+    created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
     class Meta:
         verbose_name = 'Presión de alimentación'
