@@ -15,6 +15,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'name', 'last_name')
+
+class UserPPESerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'name', 'last_name')
         
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
