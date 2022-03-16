@@ -16,7 +16,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'name', 'last_name')
 
-class UserPPESerializer(serializers.ModelSerializer):
+class UserCustomRepresentationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'name', 'last_name')

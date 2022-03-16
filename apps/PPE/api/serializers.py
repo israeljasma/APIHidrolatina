@@ -2,7 +2,7 @@ from apps.PPE.models import detectionPPE
 
 from rest_framework import serializers
 
-from apps.users.api.serializers import UserPPESerializer
+from apps.users.api.serializers import UserCustomRepresentationSerializer
 
 class detectionPPESerializers(serializers.ModelSerializer):
 
@@ -12,7 +12,7 @@ class detectionPPESerializers(serializers.ModelSerializer):
 
 class detectionPPERepresentationSerializers(serializers.ModelSerializer):
 
-    user = UserPPESerializer(read_only=True)
+    user = UserCustomRepresentationSerializer(read_only=True)
 
     class Meta:
         model = detectionPPE
