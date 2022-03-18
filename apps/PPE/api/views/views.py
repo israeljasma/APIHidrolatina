@@ -1,3 +1,4 @@
+from urllib import request
 from rest_framework import viewsets
 from rest_framework.authtoken.models import Token
 
@@ -15,7 +16,11 @@ class detectionPPEViewSet(viewsets.ModelViewSet):
             return serializer_class
 
     def get_queryset(self):
-        return self.get_serializer().Meta.model.objects.all()
+        if (self.request.GET.get('user')):
+            print(self.request.GET["user"])
+            return self.get_serializer().Meta.model.objects.filter(user=self.request.GET["user"]).order_by('-date')
+        else:
+            return self.get_serializer().Meta.model.objects.all().order_by('-date')
     # serializer_class = detectionPPERepresentationSerializers
     # queryset = serializer_class.Meta.model.objects.all()
     
