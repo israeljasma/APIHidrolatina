@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from apps.identificationNFC.api.serializers import IdentificationSerializer
+from apps.identificationNFC.models import identification
 
 from apps.users.models import User
 
@@ -26,11 +28,30 @@ class UserSerializer(serializers.ModelSerializer):
         #Modelo
         model = User
         #campos a usar
-        fields = '__all__'
+        exclude = ('groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
     
     def create(self, validated_data):
         user = User(**validated_data)
         user.set_password(validated_data['password'])
+        user.save()
+        return user
+
+class UserNFCSerializer(serializers.ModelSerializer):
+
+    nfc = IdentificationSerializer(many=True)
+
+    class Meta:
+        #Modelo
+        model = User
+        #campos a usar
+        exclude = ('groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
+    
+    def create(self, validated_data):
+        nfcs_data = validated_data.pop('nfc')
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])
+        for nfc_data in nfcs_data:
+            identification.objects.create(user = user, **nfc_data)
         user.save()
         return user
 
