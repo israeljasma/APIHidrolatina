@@ -1,34 +1,6 @@
-from apps.sensors.models import RejectFlow, PermeateFlow, PermeateConductivity, RejectionPressure, FeedConductivity, DeedingTemperature, FeedPressure
+from apps.sensors.models import FeedConductivity, FeedTemperature, MembranePermeateFlow, MembraneRejectionFlow, MembraneFeedPressure, MembraneRejectionPressure, ConductivityPermeateMembranes, VesselsPermeateFlow, VesselsFeedingFlow, FeedPressureVessels, RejectPressureVessels, ConductivityPermeateVessels, RegisterMembranes, RegisterVessels
 
 from rest_framework import serializers
-
-class RejectFlowSerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = RejectFlow
-        fields = '__all__'
-
-
-class PermeateFlowSerializers(serializers.ModelSerializer):
-    
-    class Meta:
-        model = PermeateFlow
-        fields = '__all__'
-
-
-class PermeateConductivitySerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = PermeateConductivity
-        fields = '__all__'
-
-
-class RejectionPressureSerializers(serializers.ModelSerializer):
-
-    class Meta:
-        model = RejectionPressure
-        fields = '__all__'
-
 
 class FeedConductivitySerializers(serializers.ModelSerializer):
 
@@ -37,15 +9,85 @@ class FeedConductivitySerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DeedingTemperatureSerializers(serializers.ModelSerializer):
-
+class FeedTemperatureSerializers(serializers.ModelSerializer):
+    
     class Meta:
-        model = DeedingTemperature
+        model = FeedTemperature
         fields = '__all__'
 
 
-class FeedPressureSerializers(serializers.ModelSerializer):
+class MembranePermeateFlowSerializers(serializers.ModelSerializer):
 
     class Meta:
-        model = FeedPressure
+        model = MembranePermeateFlow
+        fields = '__all__'
+
+
+class MembraneRejectionFlowSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = MembraneRejectionFlow
+        fields = '__all__'
+
+
+class MembraneFeedPressureSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = MembraneFeedPressure
+        fields = '__all__'
+
+
+class MembraneRejectionPressureSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = MembraneRejectionPressure
+        fields = '__all__'
+
+
+class ConductivityPermeateMembranesSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ConductivityPermeateMembranes
+        fields = '__all__'
+
+class VesselsPermeateFlowSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = VesselsPermeateFlow
+        fields = '__all__'
+
+class VesselsFeedingFlowSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = VesselsFeedingFlow
+        fields = '__all__'
+
+class FeedPressureVesselsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = FeedPressureVessels
+        fields = '__all__'
+
+class RejectPressureVesselsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = RejectPressureVessels
+        fields = '__all__'
+
+class ConductivityPermeateVesselsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = ConductivityPermeateVessels
+        fields = '__all__'
+
+class RegisterMembranesSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = RegisterMembranes
+        fields = '__all__'
+
+class RegisterVesselsSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = RegisterVessels
         fields = '__all__'
