@@ -6,7 +6,6 @@ from django.db import models
 class FeedConductivity(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -18,7 +17,6 @@ class FeedConductivity(models.Model):
 class FeedTemperature(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -30,7 +28,6 @@ class FeedTemperature(models.Model):
 class MembranePermeateFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -42,7 +39,6 @@ class MembranePermeateFlow(models.Model):
 class MembraneRejectionFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -54,7 +50,6 @@ class MembraneRejectionFlow(models.Model):
 class MembraneFeedPressure(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -66,7 +61,6 @@ class MembraneFeedPressure(models.Model):
 class MembraneRejectionPressure(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -78,7 +72,6 @@ class MembraneRejectionPressure(models.Model):
 class ConductivityPermeateMembranes(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -90,7 +83,6 @@ class ConductivityPermeateMembranes(models.Model):
 class VesselsPermeateFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -102,7 +94,6 @@ class VesselsPermeateFlow(models.Model):
 class VesselsFeedingFlow(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -114,7 +105,6 @@ class VesselsFeedingFlow(models.Model):
 class FeedPressureVessels(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -126,7 +116,6 @@ class FeedPressureVessels(models.Model):
 class RejectPressureVessels(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -138,7 +127,6 @@ class RejectPressureVessels(models.Model):
 class ConductivityPermeateVessels(models.Model):
     id = models.AutoField(primary_key = True)
     number = models.FloatField(null = False)
-    unit = models.CharField(max_length=255)
     time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
@@ -150,7 +138,6 @@ class ConductivityPermeateVessels(models.Model):
 class RegisterMembranes(models.Model):
     id = models.AutoField(primary_key = True)
     register = models.BooleanField(null = False)
-    time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
@@ -161,7 +148,6 @@ class RegisterMembranes(models.Model):
 class RegisterVessels(models.Model):
     id = models.AutoField(primary_key = True)
     register = models.BooleanField(null = False)
-    time = models.DateTimeField('Fecha', null = False)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
 
