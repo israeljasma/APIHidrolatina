@@ -1,3 +1,4 @@
+from traceback import print_tb
 from urllib import request
 from rest_framework import viewsets
 from rest_framework.authtoken.models import Token
@@ -25,9 +26,9 @@ class detectionPPEViewSet(viewsets.ModelViewSet):
     # queryset = serializer_class.Meta.model.objects.all()
     
 
-    # def perform_create(self, serializer):
-    #     user_id = self.request.user.id
-    #     userInstance = User.objects.get(id=user_id)
-    #     serializer.save(user=userInstance)
+    def perform_create(self, serializer):
+        user_id = self.request.user.id
+        userInstance = User.objects.get(id=user_id)
+        serializer.save(user=userInstance)
 
 
