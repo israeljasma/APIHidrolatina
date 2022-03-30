@@ -11,6 +11,7 @@ class detectionPPE(models.Model):
     helmet = models.BooleanField('Casco')
     headphones = models.BooleanField('Audifonos')
     goggles = models.BooleanField('Antiparras')
+    mask = models.BooleanField('Mascarilla')
     gloves = models.BooleanField('Guantes')
     boots = models.BooleanField('Botas')
     state = models.BooleanField('estado', default=True)

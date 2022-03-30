@@ -16,5 +16,5 @@ class detectionPPERepresentationSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = detectionPPE
-        fields = ('id', 'helmet', 'headphones', 'goggles', 'gloves', 'boots', 'date', 'created_date', 'modified_date', 'user')
+        fields = ('id', 'helmet', 'headphones', 'goggles', 'mask', 'gloves', 'boots', 'date', 'created_date', 'modified_date', 'user')
         # exclude = ('state',)
