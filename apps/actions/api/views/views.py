@@ -19,3 +19,8 @@ class actionDetectionViewSet(viewsets.ModelViewSet):
 
     # serializer_class = actionDetectionSerializers
     # queryset = serializer_class.Meta.model.objects.all()
+
+    def perform_create(self, serializer):
+        user_id = self.request.user.id
+        userInstance = User.objects.get(id=user_id)
+        serializer.save(user=userInstance)
