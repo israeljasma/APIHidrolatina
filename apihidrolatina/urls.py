@@ -26,7 +26,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from apps.users.views import Login, Logout, LoginNFC
+from apps.users.views import CustomObtainAuthToken, Login, Logout, LoginNFC
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -51,6 +51,7 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name = 'Logout'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/renew/', CustomObtainAuthToken.as_view(), name='token'),
     path('users/', include('apps.users.api.routers')),
     path('identifications/', include('apps.identificationNFC.api.routers')),
     path('ppes/', include('apps.PPE.api.routers')),
