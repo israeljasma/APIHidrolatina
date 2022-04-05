@@ -71,11 +71,10 @@ class LoginNFC(TokenObtainPairView):
             return Response({'error': 'No se detecto dispositivo NFC.'}, status = status.HTTP_400_BAD_REQUEST)
 
 class CustomObtainAuthToken(ObtainAuthToken):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         userId = request.user.id
         userInstance = User.objects.get(id=userId)
         user_serializer = CustomUserSerializer(userInstance)
-        print(user_serializer.data)
         return Response({
             # 'token': str(RefreshToken.for_user(userInstance).access_token),
             # 'refresh-token': str(RefreshToken.for_user(userInstance)), 
