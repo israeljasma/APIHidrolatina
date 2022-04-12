@@ -15,7 +15,11 @@ class actionDetectionViewSet(viewsets.ModelViewSet):
             return serializer_class
 
     def get_queryset(self):
-        return self.get_serializer().Meta.model.objects.all()
+        if (self.request.GET.get('user')):
+            print(self.request.GET["user"])
+            return self.get_serializer().Meta.model.objects.filter(user=self.request.GET["user"]).order_by('-date')
+        else:
+            return self.get_serializer().Meta.model.objects.all().order_by('-date')
 
     # serializer_class = actionDetectionSerializers
     # queryset = serializer_class.Meta.model.objects.all()
