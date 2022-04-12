@@ -61,7 +61,7 @@ class actionDetection(models.Model):
     date = models.DateTimeField('Fecha', auto_now = False, auto_now_add = True)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name = 'Usuario operador')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name = 'Usuario operador', blank = True)
     historical = HistoricalRecords()
 
     @property
