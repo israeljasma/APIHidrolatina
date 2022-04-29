@@ -62,6 +62,13 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         #campos a usar
         fields = ('username', 'email', 'name', 'last_name')
 
+class UpdateUserWithNfcSerializer(serializers.ModelSerializer):
+    class Meta:
+        #Modelo
+        model = User
+        #campos a usar
+        fields = ('username', 'email', 'name', 'last_name', 'nfc')
+
     # def update(self, instance, validated_data):
     #     update_user = super().update(instance, validated_data)
     #     update_user.set_password(validated_data['password'])
