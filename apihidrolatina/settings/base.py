@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -15,6 +16,7 @@ SECRET_KEY = 'django-insecure-kho6+_eks7*m%2oommkunk0m*yamiumh$*3!*zvw5qu_z4-5$q
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['192.168.100.172', 'localhost', '192.168.100.172', '0.0.0.0', ]
 
 
 # Application definition
@@ -57,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 SWAGGER_SETTINGS = {
@@ -69,6 +72,7 @@ REST_FRAMEWORK = {
    ],
    'DEFAULT_PERMISSION_CLASSES': (
        'rest_framework.permissions.IsAuthenticated',
+       'rest_framework.permissions.DjangoModelPermissions',
    )
 }
 
@@ -114,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
@@ -130,6 +134,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:9000",
     "http://localhost:4200",
+    "http://192.168.100.172:4200",
+    "http://192.168.100.172:8000",
 ]
 
 SIMPLE_JWT = {
@@ -139,16 +145,18 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-# Por si no funciona la conexion con el Frontend
+# # Por si no funciona la conexion con el Frontend
 # CORS_ORIGIN_WHITELIST = [
 #     "http://localhost:8080",
 #     "http://127.0.0.1:9000",
+#     "http://192.168.100.172:8000",
+#     "http://192.168.100.172:4200",
 # ]
 
 # Por si no funciona la conexion con el Frontend opcion 2
-# CORS_ALLOWED_ORIGIN_REGEXES = [
-#     r"^https://\w+\.localhost:4200$",
-# ]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.localhost:4200$",
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -170,3 +178,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
