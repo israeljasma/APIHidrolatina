@@ -1,11 +1,9 @@
-import re
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
 from apps.users.models import User
-from apps.users.api.serializers import UpdateUserWithNfcSerializer, UserListSerializer, UserSerializer, UpdateUserSerializer, UserNFCSerializer
+from apps.users.api.serializers import UpdateUserWithNfcSerializer, UserListSerializer, UserSerializer, UpdateUserSerializer, UserNFCSerializer, GroupSerializer
 
 class UserViewSet(viewsets.GenericViewSet):
     model = User
@@ -65,6 +63,10 @@ class UserNFCViewSet(viewsets.ModelViewSet):
             user_serializer.save()
             return Response({'message':'Usuario registrado Correctamente.'}, status = status.HTTP_201_CREATED)
         return Response({'message': 'Hay errores en el registro.', 'errors': user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+
+class GroupViewSet(viewsets.ModelViewSet):
+    serializer_class = GroupSerializer
+    queryset = serializer_class.Meta.model.objects.all()
 
 # @api_view(['GET', 'POST'])
 # def user_api_view(request):

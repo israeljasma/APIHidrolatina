@@ -4,6 +4,13 @@ from apps.identificationNFC.api.serializers import IdentificationSerializer
 from apps.identificationNFC.models import identification
 
 from apps.users.models import User
+from django.contrib.auth.models import Group
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id', 'name')
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     pass
@@ -28,7 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
         #Modelo
         model = User
         #campos a usar
-        exclude = ('groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
+        exclude = ('user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
     
     def create(self, validated_data):
         user = User(**validated_data)
@@ -44,7 +51,7 @@ class UserNFCSerializer(serializers.ModelSerializer):
         #Modelo
         model = User
         #campos a usar
-        exclude = ('groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
+        exclude = ('user_permissions', 'is_active', 'is_staff', 'is_superuser', 'last_login')
     
     def create(self, validated_data):
         nfcs_data = validated_data.pop('nfc')
@@ -78,5 +85,6 @@ class UpdateUserWithNfcSerializer(serializers.ModelSerializer):
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ('password','groups', 'user_permissions', 'is_active', 'is_staff', 'is_superuser')
+        exclude = ('password', 'user_permissions', 'is_active', 'is_staff', 'is_superuser')
         # fields = '__all__'
+
