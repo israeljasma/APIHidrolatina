@@ -11,7 +11,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.users.api.serializers import CustomTokenObtainPairSerializer, CustomUserSerializer
+from apps.users.api.serializers import CustomTokenObtainPairSerializer, CustomUserSerializer, CustomLoginUserSerializer
 
 from apps.users.api.serializers import UserTokenSerializer
 from apps.users.models import User
@@ -24,10 +24,12 @@ class Login(TokenObtainPairView):
         password = request.data.get('password', '')
         user = authenticate(username = username, password = password)
 
+        print(user)
+
         if user:
             login_serializer = self.serializer_class(data = request.data)
             if login_serializer.is_valid():
-                user_serializer = CustomUserSerializer(user)
+                user_serializer = CustomLoginUserSerializer(user)
                 return Response({
                     'token': login_serializer.validated_data.get('access'),
                     'refresh-token': login_serializer.validated_data.get('refresh'),
