@@ -22,6 +22,7 @@ class UserTokenSerializer(serializers.ModelSerializer):
 
 
 class CustomLoginUserSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(many=True)
     class Meta:
         model = User
         fields = ('username', 'email', 'name', 'last_name', 'is_active', 'is_superuser', 'is_staff', 'groups')
