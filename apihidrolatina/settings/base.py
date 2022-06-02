@@ -66,6 +66,10 @@ SWAGGER_SETTINGS = {
     'DOC_EXPANSION': 'none'
 }
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.AllowAllUsersModelBackend'
+]
+
 REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': [
        'rest_framework_simplejwt.authentication.JWTAuthentication',
