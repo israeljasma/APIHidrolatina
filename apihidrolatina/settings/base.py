@@ -45,6 +45,7 @@ THIRD_APPS = [
     'simple_history',
     'drf_yasg',
     'corsheaders',
+    'django_cleanup',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
