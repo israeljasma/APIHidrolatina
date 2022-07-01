@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import viewsets
 from apps.users.models import User
+from django.contrib.auth.models import Group
 from apps.users.api.serializers import UpdateUserWithNfcSerializer, UserListSerializer, UserSerializer, UpdateUserSerializer, UserNFCSerializer, GroupSerializer
 
 class UserViewSet(viewsets.GenericViewSet):
@@ -25,11 +26,21 @@ class UserViewSet(viewsets.GenericViewSet):
         return Response(users_serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
-        user_serializer = self.serializer_class(data=request.data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return Response({'message':'Usuario registrado Correctamente.'}, status = status.HTTP_201_CREATED)
-        return Response({'message': 'Hay errores en el registro.', 'errors': user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+        if 'group_id' in request.data:
+            group_id = request.data.pop('group_id')
+            user_serializer = self.serializer_class(data=request.data)
+            if user_serializer.is_valid():
+                user = user_serializer.save()
+                group = Group.objects.get(id=group_id) 
+                group.user_set.add(user)
+                return Response({'message':'Usuario registrado Correctamente.'}, status = status.HTTP_201_CREATED)
+            return Response({'message': 'Hay errores en el registro.', 'errors': user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+        else:
+            user_serializer = self.serializer_class(data=request.data)
+            if user_serializer.is_valid():
+                user = user_serializer.save()
+                return Response({'message':'Usuario registrado Correctamente.'}, status = status.HTTP_201_CREATED)
+            return Response({'message': 'Hay errores en el registro.', 'errors': user_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
         user = self.get_object(pk)
