@@ -14,7 +14,7 @@ class detectionPPE(models.Model):
     mask = models.BooleanField('Mascarilla')
     gloves = models.BooleanField('Guantes')
     boots = models.BooleanField('Botas')
-    state = models.BooleanField('estado', default=True)
+    state = models.BooleanField('Estado', default=True)
     date = models.DateTimeField('Fecha', auto_now = False, auto_now_add = True, null = True)
     created_date = models.DateTimeField('Fecha de Creación', auto_now = False, auto_now_add = True)
     modified_date = models.DateTimeField('Fecha de Modificación', auto_now = True, auto_now_add = False)
